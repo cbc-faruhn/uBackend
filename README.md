@@ -51,6 +51,8 @@ access.tableName = {
         //     - get: return the array of allowed / to be returned records
         //     - post, put, patch: return the array of allowed changes
         //     - delete: return null, [] or nothing (no return statetment) if deletion is not allowed
+        //
+        // As you return an array of allowed records / changes, you can also freely manipulate what is to be returned!
         filter: function(req, affectedRecords, changes) {
             return affectedRecords;
         }
