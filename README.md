@@ -34,6 +34,8 @@ To be effective, the javascript code needs to be saved in a .js file in the fold
 #### Basic Access Control Object Structre
 
 ```javascript
+// tableName = the physical name of the table in the database or the name of the custom endpoint
+// alternatively use access['tableName'] if table name contains characters that are contrary to Javascript tokens
 access.tableName = {
     // method must be one of: all, post, put, get, patch, delete or default
     method: {
@@ -57,7 +59,6 @@ access.tableName = {
 ```
 
 Following rules apply:
-* tableName = the physical name of the table in the database
 * Multiple methods can be added simply as further properties of the object.
 * The method "default" will be tried if the actual method (post, put, get, patch, delete) hasn't been found.
 * If you use "all" as a method, all other methods for that table are ignored (works like a catch-all).
@@ -73,7 +74,9 @@ Attention: this boilerplate code assumes that the table that is to be access con
 
 Boilerplate code:
 ```javascript
-access['nameOfTableToControlAccessTo'] = {
+// tableName = the physical name of the table in the database or the name of the custom endpoint
+// alternatively use access['tableName'] if table name contains characters that are contrary to Javascript tokens
+access.tableName = {
     // CREATE (HTTP method: POST)
     post: {
         // list all the roles, that are principially allowed to access
@@ -208,7 +211,7 @@ uBackend comes with four internally used / allocated roles for providing functio
 | --- | --- |
 | public | any user that has not been authorized (not to be manually assigned to the user record in configuration or in the database) |
 | internal | any user that has been authorized (virtually added at authorization time; no need to assign manually to the user record in configuration or in the database) |
-| admin | Administrativ access, incl. remote reload of configuration |
+| admin | Administrative access, incl. remote reload of configuration |
 | interactive | any user that is allowed to create a session bearer token that is self-prolonging with each transaction within the validity |
 
 #### Defining own roles
