@@ -30,14 +30,18 @@ uBackend comes with four internally used / allocated roles for providing functio
 
 | Role | Description |
 | --- | --- |
+| public | any user that has not been authorized (not to be manually assigned to the user record in configuration or in the database) |
+| internal | any user that has been authorized (virtually added at authorization time; no need to assign manually to the user record in configuration or in the database) |
 | admin | Administrativ access, incl. remote reload of configuration |
-| internal | any user that has been authorized (automatically added at authorization time) |
-| interactive | any user that is allowed to create a session bearer token |
-| public | any user that has not been authorized |
+| interactive | any user that is allowed to create a session bearer token that is self-prolonging with each transaction within the validity |
 
 #### Defining own roles
 
 ### Access Control
+
+#### Basic Structure of an access object
+
+
 
 #### Role-based Access Control
 
