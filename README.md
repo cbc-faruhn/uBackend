@@ -126,6 +126,13 @@ access['nameOfTableToControlAccessTo'] = {
                 for (let i = 0; i < affectedRecords.length && !foreignAffectedRecordFound; i++) {
                     foreignAffectedRecordFound = (affectedRecords[i].created_by != req.user.username);
                 }
+                
+                if (foreignAffectedRecordFound) {
+                    throw {
+                        message: 'PATCH would affect records that the current user is not allowed to change',
+                        status: 403
+                    }
+                }
             }
 
             // filter out changes to the id (primary key) to not endanger existing deep-links
