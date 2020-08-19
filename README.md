@@ -31,6 +31,37 @@ You can simply use the boilerplate code from below as a starting point.
 
 To be effective, the javascript code needs to be saved in a .js file in the folder "access".
 
+#### Basic Access Control Object Structre
+
+```javascript
+access.tableName = {
+    // method must be one of: all, post, put, get, patch, delete or default
+    method: {
+        // array of all the roles, that are principially allowed to access
+        // (if user doesn't have any of the mentioned roles, access is rejected)
+        // (an empty array equals to the array ['public'])
+        roles: [],
+
+        // filter must return null, [] or nothing (no return statetment) to filter-out the query
+        // (alternatively it can throw an error to cancel the transaction)
+        //
+        // For:
+        //     - get: return the array of allowed / to be returned records
+        //     - post, put, patch: return the array of allowed changes
+        //     - delete: return null, [] or nothing (no return statetment) if deletion is not allowed
+        filter: function(req, affectedRecords, changes) {
+            return affectedRecords;
+        }
+    }
+}
+```
+
+Following rules apply:
+* tableName = the physical name of the table in the database
+* Multiple methods can be added simply as further properties of the object.
+* The method "default" will be tried if the actual method (post, put, get, patch, delete) hasn't been found.
+* If you use "all" as a method, all other methods for that table are ignored (works like a catch-all).
+
 #### Example / Boilerplate
 
 Attention: this boilerplate code assumes that the table that is to be access controlled has at least five columns:
