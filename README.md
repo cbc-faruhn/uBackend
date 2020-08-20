@@ -199,7 +199,7 @@ access.tableName = {
         // filter must return null, [] or nothing (no return statetment) to filter-out the query
         // (alternatively it can throw an error to cancel the transaction)
         filter: function(req, affectedRecords) {
-            return true;
+            return [true];
         }
     }
 }
