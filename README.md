@@ -44,6 +44,7 @@ access.tableName = {
         // (an empty array equals to the array ['public'])
         roles: [],
 
+        // filter must return an array with at least one element to not filter-out the query;
         // filter must return null, [] or nothing (no return statetment) to filter-out the query
         // (alternatively it can throw an error to cancel the transaction)
         //
@@ -196,6 +197,7 @@ access.tableName = {
     delete: {
         roles: ['admin'],
 
+        // filter must return an array with at least one element to not filter-out the query;
         // filter must return null, [] or nothing (no return statetment) to filter-out the query
         // (alternatively it can throw an error to cancel the transaction)
         filter: function(req, affectedRecords) {
