@@ -13,6 +13,16 @@ This Application provides a basic RESTful API to directly interact with database
 
 #### Database Users
 
+#### Default admin user
+
+If no admin user (either username "admin" or any user having the role "admin") exists, an admin user is created at start-up of uBackend and credential data is printed to the terminal.
+
+* Username: admin
+* Password: <dynamically generated>
+* Token Secret: <dynamically generated>
+    
+Make sure to write down the credentials and add the QR-Code/Token Secret to your favorite Authenticator app!
+
 ### Authentication
 
 #### Types of Authentication
@@ -92,6 +102,8 @@ access.tableName = {
         
             // adjust / override creation information
             for (let i = 0; i < changes.length; i++) {
+                changes[i].updated_by = req.user.username;
+                changes[i].updated_at = new Date().getTime();
                 changes[i].created_by = req.user.username;
                 changes[i].created_at = new Date().getTime();
             }
