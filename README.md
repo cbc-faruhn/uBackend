@@ -5,7 +5,7 @@ This Application provides a basic RESTful API to directly interact with database
 
 ### Configuration File
 
-The configuration is done in the JSON file config.json in the base directory. The basic structure is the following:
+The configuration is done in the **JSON** file config.json in the base directory. The basic structure is the following (remember JSON doesn't know comments, these are only there for explanation):
 
 ```javascript
 {
@@ -53,7 +53,7 @@ The configuration is done in the JSON file config.json in the base directory. Th
 			"sqlite": {
 				"file": "example.db"      // the file containing the SQLite Database to be accessed
 			},
-			"mysql": {                    // connection information to the MySQL/MariaDB database you want that is accessed
+			"mysql": {                        // connection information to the MySQL/MariaDB database you want that is accessed
 				"host": "localhost",
 				"user": "root",
 				"password": "mysqlPassword",
