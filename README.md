@@ -10,7 +10,8 @@ The configuration is done in the JSON file config.json in the base directory. Th
 ```javascript
 {
 
-	"app": {
+    // Application Settings
+    "app": {
         "title": "uBackend",              // the title of your backend
         "port": 8888,                     // the port your application should run on
         "basePath": "/",                  // per URL-Path where the API should be published
@@ -20,13 +21,15 @@ The configuration is done in the JSON file config.json in the base directory. Th
                                           // (make it "" to have it not published at all)
     },
     
+    // Security Settings
     "security": {
         "bearerTokenValidity": 900,       // the validity of bearer tokens in seconds
         "defaultAccessRoles": ["public"]  // the default role required to access any resource which is not explicitely captured in access rules
                                           // (make it ["internal"] to require a login per default)
     },
     
-	"db": {
+    // Application Settings
+    "db": {
         "defaultPrimaryKey": "id",        // the column name which contains the (single) primary key for any table not explicitely mention in "primaryKeys"
         "generatePrimaryKeys": true,      // enables/disables the (random) generation of primary key consisting of 32 hexa-decimal characters (similar to an UUID)
         "primaryKeys": {                  // map/hash: table name is the key, the value is the column name which contains the (single) primary key
@@ -45,7 +48,7 @@ The configuration is done in the JSON file config.json in the base directory. Th
         },
         
         // the type of data base to be used (the value equals the key of the hash/map "connection")
-		"type": "sqlite",
+	"type": "sqlite",
 		"connection": {
 			"sqlite": {
 				"file": "example.db"      // the file containing the SQLite Database to be accessed
