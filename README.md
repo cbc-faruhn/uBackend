@@ -49,18 +49,18 @@ The configuration is done in the **JSON** file config.json in the base directory
         
         // the type of data base to be used (the value equals the key of the hash/map "connection")
 	"type": "sqlite",
-		"connection": {
-			"sqlite": {
-				"file": "example.db"      // the file containing the SQLite Database to be accessed
-			},
-			"mysql": {                        // connection information to the MySQL/MariaDB database you want that is accessed
-				"host": "localhost",
-				"user": "root",
-				"password": "mysqlPassword",
-				"database": "myDataBase"
-			}
-		}
+	"connection": {
+            "sqlite": {
+		"file": "example.db"      // the file containing the SQLite Database to be accessed
+	    },
+	    "mysql": {                    // connection information to the MySQL/MariaDB database you want that is accessed
+		"host": "localhost",
+		"user": "root",
+		"password": "mysqlPassword",
+		"database": "myDataBase"
+	    }
 	}
+    }
 }
 ```
 
