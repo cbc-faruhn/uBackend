@@ -3,7 +3,63 @@ This Application provides a basic RESTful API to directly interact with database
 
 ## Configuration
 
-### Configuration File / Basic Structure
+### Configuration File
+
+The configuration is done in the JSON file config.json in the base directory. The basic structure is the following:
+
+```javascript
+{
+
+	"app": {
+        "title": "uBackend",              // the title of your backend
+        "port": 8888,                     // the port your application should run on
+        "basePath": "/",                  // per URL-Path where the API should be published
+        "debug": false,                   // enable/disable verbose logging
+        "runType": "standalone",          // if you are using e.g. phusion, you might want to chose anything else than "standalone"
+        "swaggerPath": "swagger"          // the path under the basePath where the swagger documentation should be published
+                                          // (make it "" to have it not published at all)
+    },
+    
+    "security": {
+        "bearerTokenValidity": 900,       // the validity of bearer tokens in seconds
+        "defaultAccessRoles": ["public"]  // the default role required to access any resource which is not explicitely captured in access rules
+                                          // (make it ["internal"] to require a login per default)
+    },
+    
+	"db": {
+        "defaultPrimaryKey": "id",        // the column name which contains the (single) primary key for any table not explicitely mention in "primaryKeys"
+        "generatePrimaryKeys": true,      // enables/disables the (random) generation of primary key consisting of 32 hexa-decimal characters (similar to an UUID)
+        "primaryKeys": {                  // map/hash: table name is the key, the value is the column name which contains the (single) primary key
+        },
+        
+        // if you want to enable authorization with users from the database, specify the respective columns below
+        "authentication": {
+            "table": "user",              // table name of the table containing the user data
+            "columns": {
+                "username": "username",   // the column in the user data table containing the username
+                "password": "password",   // the column in the user data table containing the password
+                "secret": "secret",       // the column in the user data table containing the secret required for the Two-Factor/Authenticator Authentication
+                "roles": "roles",         // the column in the user data table containing the JSON-Array or comma-separated list of roles the user has
+                "id": "id"                // the column in the user data table containing the primary key of the user
+            }
+        },
+        
+        // the type of data base to be used (the value equals the key of the hash/map "connection")
+		"type": "sqlite",
+		"connection": {
+			"sqlite": {
+				"file": "example.db"      // the file containing the SQLite Database to be accessed
+			},
+			"mysql": {                    // connection information to the MySQL/MariaDB database you want that is accessed
+				"host": "localhost",
+				"user": "root",
+				"password": "mysqlPassword",
+				"database": "myDataBase"
+			}
+		}
+	}
+}
+```
 
 ### Database
 
@@ -19,7 +75,7 @@ If no admin user (either username "admin" or any user having the role "admin") e
     
 Make sure to write down the credentials and add the QR-Code/Token Secret to your favorite Authenticator app!
 
-To prevent this behavior, uBackend must be started with the Argument --noAdmin.
+To prevent this behavior, uBackend must be started with the Argument --noAdmin or a user with the username "admin" must be created in the config file. If you  choose create a user, you don't need to assign any roles to it. This way you can effectively disable the default admin user.
 
 ### Authentication
 
